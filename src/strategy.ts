@@ -17,9 +17,9 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
       prop => prop in this.configuration
     );
     if (!this.serviceBased) {
-      if (!("key" in this.configuration)) {
+      if (!("keys" in this.configuration)) {
         throw new Error(
-          `A static key is missing, when strategy '${this.name}', is not service based`
+          `A static keys is missing, when strategy '${this.name}', is not service based`
         );
       }
     }
@@ -51,7 +51,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
 
   async authenticate(authRequest: AuthenticationResult, params: Params) {
     const {
-      key,
+      keys,
       errorMessage,
       entity,
       revokedField,
@@ -72,7 +72,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
     };
 
     if (!this.serviceBased) {
-      if (key !== apiKey) throw new NotAuthenticated(errorMessage);
+      if (!keys.includes(apiKey)) throw new NotAuthenticated(errorMessage);
       return response;
     }
 

@@ -38,9 +38,9 @@ Now, there are two ways of using this strategy:
 - With a static API key (Not really recommended, but up to you)
 - With a serivce based method. (Recommended)
 
-#### First Method. Static key (Not recommened)
+#### First Method. Static keys (Not recommened)
 
-To configure this method, just add the key under the config like so
+To configure this method, just add the keys under the config like so
 
 ```jsonc
 {
@@ -62,7 +62,7 @@ To configure this method, just add the key under the config like so
     // other strategies,
     "api-key": {
       "headerField": "x-api-key", // Required
-      "key": "KEY HERE" // Required
+      "keys": ["KEY HERE"] // Required
     }
    }
 }
