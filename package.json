@@ -1,5 +1,5 @@
 {
-  "name": "@dallinbjohnson/authentication-api-key",
+  "name": "@dallin.b.johnson/authentication-api-key",
   "description": "API Key authentication strategy for @feathers/authentication",
   "version": "0.0.1",
   "homepage": "https://github.com/dallinbjohnson/authentication-api-key",

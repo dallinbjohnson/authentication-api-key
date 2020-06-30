@@ -8,13 +8,13 @@ Currently it only supports when it's used in conjunction with the "Local Strateg
 
 ## Installation
 
-To install and use the strategy, first run `npm install @thesinding/authentication-api-key`
+To install and use the strategy, first run `npm install @dallin.b.johnson/authentication-api-key`
 
 Now add the strategy to your `authentication.(ts|js)` like so:
 
 ```javascript
 ... // other imports
-const { ApiKeyStrategy } =  require('@thesinding/authentication-api-key');
+const { ApiKeyStrategy } =  require('@dallin.b.johnson/authentication-api-key');
 
 module.exports  =  app  => {
 	... // Other authentications strategies
