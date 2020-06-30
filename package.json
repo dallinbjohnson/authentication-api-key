@@ -3,7 +3,7 @@
   "description": "API Key authentication strategy for @feathers/authentication",
   "version": "0.0.5",
   "homepage": "https://simonsinding.me",
-  "main": "lib/",
+  "main": "src/",
   "types": "./lib/index.d.ts",
   "keywords": [
     "feathers",
