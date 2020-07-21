@@ -60,7 +60,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
       headerField
     } = this.configuration;
     const apiKey = authRequest[entity];
-    const response = {
+    const result = {
       authentication: {
         strategy: this.name,
         [entity]: apiKey
@@ -75,7 +75,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
 
     if (!this.serviceBased) {
       if (!keys.includes(apiKey)) throw new NotAuthenticated(errorMessage);
-      return response;
+      return result;
     }
 
     const apiKeyData = await this.findEntity(apiKey, params);
@@ -95,9 +95,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
       }
     }
 
-    response[entity] = apiKeyData;
-    params[entity] = apiKeyData;
-    return response;
+    return Object.assign(Object.assign({}, result), { [entity]: apiKeyData });
   }
 
   async parse(req: IncomingMessage, res: ServerResponse) {
