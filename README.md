@@ -105,6 +105,31 @@ Now just add `entity` and `service` to the config like so.
 
 ```
 
+example: `service.model.js`
+
+```js
+module.exports = function (app) {
+  const modelName = 'api-keys';
+  const mongooseClient = app.get('mongooseClient');
+  const {Schema} = mongooseClient;
+  const schema = new Schema({
+    "api-key": {type: String, required: true},
+    authorized: {type: Boolean, default: false},
+    active: {type: Boolean, default: true},
+    revoked: {type: Boolean, default: false}
+  }, {
+    timestamps: true
+  });
+
+  // This is necessary to avoid model compilation errors in watch mode
+  // see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel
+  if (mongooseClient.modelNames().includes(modelName)) {
+    mongooseClient.deleteModel(modelName);
+  }
+  return mongooseClient.model(modelName, schema);
+};
+``` 
+
 Now just add `x-api-key: "KEY HERE"` to your headers, and it should be authenicated.
 
 Done.
