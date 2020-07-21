@@ -55,6 +55,8 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
       errorMessage,
       entity,
       revokedField,
+      authorizedField,
+      activeField,
       headerField
     } = this.configuration;
     const apiKey = authRequest[entity];
@@ -80,6 +82,16 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
     if (revokedField in apiKeyData) {
       if (apiKeyData[revokedField]) {
         throw new NotAuthenticated("API Key has been revoked");
+      }
+    }
+    if (authorizedField in apiKeyData) {
+      if (!apiKeyData[authorizedField]) {
+        throw new NotAuthenticated("API Key has not been authorized");
+      }
+    }
+    if (activeField in apiKeyData) {
+      if (!apiKeyData[activeField]) {
+        throw new NotAuthenticated("API Key is not active");
       }
     }
 

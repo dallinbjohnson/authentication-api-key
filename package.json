@@ -1,7 +1,7 @@
 {
   "name": "@dallin.b.johnson/authentication-api-key",
   "description": "API Key authentication strategy for @feathers/authentication",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/dallinbjohnson/authentication-api-key",
   "main": "lib/",
   "types": "./lib/index.d.ts",
@@ -22,7 +22,9 @@
     "name": "Simon Sinding",
     "email": "sinding2000@gmail.com"
   },
-  "contributors": ["Dallin B Johnson"],
+  "contributors": [
+    "Dallin B Johnson"
+  ],
   "bugs": {
     "url": "https://github.com/dallinbjohnson/authentication-api-key/issues"
   },
@@ -30,9 +32,11 @@
     "node": ">= 6"
   },
   "scripts": {
-    "prepublish": "npm run compile",
-    "publish": "npm run prepublish",
     "compile": "shx rm -rf lib/ && tsc --declaration",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "publish": "npm publish --access public",
     "test": "npm run compile && npm run mocha",
     "mocha": "mocha --opts ../../mocha.ts.opts --recursive test/**.test.ts test/**/*.test.ts"
   },
