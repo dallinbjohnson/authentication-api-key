@@ -96,6 +96,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
     }
 
     response[entity] = apiKeyData;
+    params[entity] = apiKeyData;
     return response;
   }
 
