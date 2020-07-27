@@ -99,6 +99,8 @@ Now just add `entity` and `service` to the config like so.
       "entity": "api-key", // Required - The name of the key field
       "service": "api-keys", // Required - The name of the service to use.
       "revokedField": "revoked" // Optional - The name of the revoked field
+      "authorizedField": "authorized" // Optional - The name of the authorized field
+      "activeField": "active" // Optional - The name of the active field
     }
    }
 }
@@ -114,9 +116,9 @@ module.exports = function (app) {
   const {Schema} = mongooseClient;
   const schema = new Schema({
     "api-key": {type: String, required: true},
+    revoked: {type: Boolean, default: false},
     authorized: {type: Boolean, default: false},
     active: {type: Boolean, default: true},
-    revoked: {type: Boolean, default: false}
   }, {
     timestamps: true
   });
