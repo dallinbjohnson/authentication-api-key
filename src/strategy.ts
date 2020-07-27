@@ -37,7 +37,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
   async findEntity(apiKey: string, params: Params) {
     const { errorMessage, entity } = this.configuration;
     try {
-      const result = await this.entityService.find({
+      const result = await this.entityService._find({
         ...params,
         query: { [entity]: apiKey, $limit: 1 }
       });
