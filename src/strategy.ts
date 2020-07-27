@@ -38,6 +38,7 @@ export class ApiKeyStrategy extends AuthenticationBaseStrategy {
     const { errorMessage, entity } = this.configuration;
     try {
       const result = await this.entityService.find({
+        ...params,
         query: { [entity]: apiKey, $limit: 1 }
       });
       if (result.total === 0) {
